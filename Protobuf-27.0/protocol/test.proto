@@ -1,0 +1,26 @@
+syntax = "proto3"; //使用proto3语法编译
+package Test;      //声明包名
+
+message Message    //message关键字声明类型
+{
+    int32 id = 1;  //字段得从1开始声明
+    string msg = 2;//然后依次递增，不能跳跃。
+}
+
+message PlayerInfo
+{
+    int32 id = 1;       // id
+    string name = 2;    // 名字
+    int32 lv = 3;       // 等级
+    int32 exp = 4;      // 经验值
+    float gold = 5;     // 金币
+    string desc = 6;    // 个人简介
+}
+
+message HeartBeat
+{
+}
+
+message Quit
+{
+}

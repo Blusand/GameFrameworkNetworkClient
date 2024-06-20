@@ -7,7 +7,13 @@ message Message    //message关键字声明类型
     string msg = 2;//然后依次递增，不能跳跃。
 }
 
-message PlayerInfo
+message CSPlayerInfo
+{
+    int32 id = 1;       // 玩家ID
+    string msg = 2;     // 额外消息
+}
+
+message SCPlayerInfo
 {
     int32 id = 1;       // id
     string name = 2;    // 名字

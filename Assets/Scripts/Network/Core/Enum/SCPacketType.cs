@@ -4,6 +4,6 @@ namespace GameMain
     {
         HeartBeat = 2,
         Test = 1001,
-        PlayerInfo = 1002,
+        PlayerInfo = 1003,
     }
 }

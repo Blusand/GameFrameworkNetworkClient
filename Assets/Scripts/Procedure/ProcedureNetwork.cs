@@ -3,8 +3,6 @@ using GameFramework.Event;
 using GameFramework.Fsm;
 using GameFramework.Network;
 using GameFramework.Procedure;
-using GameMain;
-using GameMain.Args;
 using Test;
 using UnityEngine;
 using UnityGameFramework.Runtime;
@@ -46,7 +44,7 @@ public class ProcedureNetwork : ProcedureBase
         // 发送Message消息
         else if (Input.GetKeyDown(KeyCode.S))
         {
-            m_NetworkChannel.Send(CSMessage.Create(165511, "这是客户端发来的消息"));
+            m_NetworkChannel.Send(CSMessagePacket.Create(165511, "这是客户端发来的消息"));
         }
         // 发送PlayerInfo消息
         else if (Input.GetKeyDown(KeyCode.P))
@@ -56,7 +54,7 @@ public class ProcedureNetwork : ProcedureBase
         // 发送Quit消息
         else if (Input.GetKeyDown(KeyCode.Q))
         {
-            m_NetworkChannel.Send(CSQuit.Create());
+            m_NetworkChannel.Send(CSQuitPacket.Create());
         }
     }
 

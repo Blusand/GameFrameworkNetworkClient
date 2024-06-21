@@ -4,34 +4,38 @@ using GameFramework.Network;
 using Google.Protobuf;
 using UnityGameFramework.Runtime;
 
-namespace GameMain
+public abstract class PacketBase : Packet
 {
-    public abstract class PacketBase : Packet
+    public abstract PacketType PacketType { get; protected set; }
+    public abstract void Serialize(MemoryStream stream);
+    public abstract void Deserialize(Stream source);
+    public abstract int GetMsgSize();
+}
+
+public abstract class PacketBase<T> : PacketBase where T : class, IMessage, new()
+{
+    public T Msg { get; private set; } = new T();
+
+    public override void Serialize(MemoryStream stream)
     {
-        public abstract PacketType PacketType { get; protected set; }
-        public abstract IMessage Msg { get; protected set; }
+        Msg.WriteTo(stream);
+    }
 
-        public void Serialize(MemoryStream stream)
+    public override void Deserialize(Stream source)
+    {
+        try
         {
-            Msg.WriteTo(stream);
+            Msg = Msg.Descriptor.Parser.ParseFrom(source) as T;
         }
+        catch (Exception e)
+        {
+            Log.Error($"{e} {e.Message}");
+            Log.Debug($"协议{Id}解析失败");
+        }
+    }
 
-        public void Deserialize(Stream source)
-        {
-            try
-            {
-                Msg = Msg.Descriptor.Parser.ParseFrom(source);
-            }
-            catch (Exception e)
-            {
-                Log.Error($"{e} {e.Message}");
-                Log.Debug($"协议{Id}解析失败");
-            }
-        }
-
-        public int GetMsgSize()
-        {
-            return Msg.CalculateSize();
-        }
+    public override int GetMsgSize()
+    {
+        return Msg.CalculateSize();
     }
 }

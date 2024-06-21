@@ -1,7 +1,4 @@
-﻿namespace GameMain
+﻿public sealed class CSPacketHeader : PacketHeaderBase
 {
-    public sealed class CSPacketHeader : PacketHeaderBase
-    {
-        public override PacketType PacketType { get; protected set; } = PacketType.ClientToServer;
-    }
+    public override PacketType PacketType { get; protected set; } = PacketType.ClientToServer;
 }

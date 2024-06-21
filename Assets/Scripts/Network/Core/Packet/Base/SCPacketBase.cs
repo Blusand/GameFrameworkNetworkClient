@@ -1,7 +1,6 @@
-﻿namespace GameMain
+﻿using Google.Protobuf;
+
+public abstract class SCPacketBase<T> : PacketBase<T> where T : class, IMessage, new()
 {
-    public abstract class SCPacketBase : PacketBase
-    {
-        public override PacketType PacketType { get; protected set; } = PacketType.ServerToClient;
-    }
+    public override PacketType PacketType { get; protected set; } = PacketType.ServerToClient;
 }

@@ -1,24 +1,16 @@
-using Google.Protobuf;
 using Test;
 
-namespace GameMain
+public class SCPlayerInfoPacket : SCPacketBase<SCPlayerInfo>
 {
-    public class SCPlayerInfoPacket : SCPacketBase
+    public override int Id => (int)SCPacketType.PlayerInfo;
+
+    public override void Clear()
     {
-        public override int Id => (int)SCPacketType.PlayerInfo;
-        public override IMessage Msg { get; protected set; } = new SCPlayerInfo();
-
-        public SCPlayerInfo PlayerInfo => Msg as SCPlayerInfo;
-
-        public override void Clear()
-        {
-            var playerInfo = Msg as SCPlayerInfo;
-            playerInfo.Id = 0;
-            playerInfo.Name = string.Empty;
-            playerInfo.Lv = 0;
-            playerInfo.Exp = 0;
-            playerInfo.Gold = 0f;
-            playerInfo.Desc = string.Empty;
-        }
+        Msg.Id = 0;
+        Msg.Name = string.Empty;
+        Msg.Lv = 0;
+        Msg.Exp = 0;
+        Msg.Gold = 0f;
+        Msg.Desc = string.Empty;
     }
 }

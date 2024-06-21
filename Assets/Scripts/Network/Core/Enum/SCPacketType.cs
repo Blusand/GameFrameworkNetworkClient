@@ -1,9 +1,6 @@
-namespace GameMain
+public enum SCPacketType
 {
-    public enum SCPacketType
-    {
-        HeartBeat = 2,
-        Test = 1001,
-        PlayerInfo = 1003,
-    }
+    HeartBeat = 2,
+    Test = 1001,
+    PlayerInfo = 1003,
 }

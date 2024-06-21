@@ -1,5 +1,4 @@
 using GameFramework.Network;
-using Test;
 using UnityEngine;
 
 namespace GameMain
@@ -10,11 +9,8 @@ namespace GameMain
 
         public override void Handle(object sender, Packet packet)
         {
-            SCMessage scTest = packet as SCMessage;
-            if (scTest?.Msg is Message msg)
-            {
-                Debug.Log($"{msg.Id} {msg.Msg}");
-            }
+            SCMessagePacket scMessage = packet as SCMessagePacket;
+            Debug.Log($"{scMessage.Msg.Id} {scMessage.Msg.Msg}");
         }
     }
 }
